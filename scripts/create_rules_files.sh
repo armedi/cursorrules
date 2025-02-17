@@ -6,9 +6,11 @@
 # Ensure we're in the project root
 CURRENT_DIR="$(pwd)"
 MEMORY_BANK_DIR="${CURRENT_DIR}/memory-bank"
+CURSOR_DIR="${CURRENT_DIR}/.cursor"
 
-# Create memory-bank directory if it doesn't exist
+# Create memory-bank and .cursor directories if they don't exist
 mkdir -p "$MEMORY_BANK_DIR"
+mkdir -p "$CURSOR_DIR/rules"
 
 # Function to create a file with default content if it doesn't exist
 create_file() {
@@ -115,4 +117,36 @@ create_file "$MEMORY_BANK_DIR/progress.md" "# Project Progress
 - 
 "
 
-echo "Memory Bank initialization complete."
+# Create projectRules.md in .cursor directory
+create_file "$CURSOR_DIR/projectRules.md" "# Project Rules
+
+## Project Patterns and Insights
+
+### Critical Implementation Paths
+- 
+
+### User Preferences and Workflow
+- 
+
+### Project-Specific Patterns
+- 
+
+### Known Challenges
+- 
+
+### Decision Evolution
+- 
+
+### Tool Usage Patterns
+- 
+"
+
+# Create project.mdc rule file
+create_file "$CURSOR_DIR/rules/project.mdc" "---
+description: Project Rules
+globs: *
+---
+[projectRules.md](mdc:.cursor/projectRules.md)
+"
+
+echo "Memory Bank and Project Rules initialization complete."

@@ -46,7 +46,7 @@ flowchart TD
 flowchart TD
     Start[Start] --> Context[Check Memory Bank]
     Context --> Update[Update Documentation]
-    Update --> Rules[Update .cursor/project.md if needed]
+    Update --> Rules[Update .cursor/projectRules.md if needed]
     Rules --> Execute[Execute Task]
     Execute --> Document[Document Changes]
 ```
@@ -143,7 +143,7 @@ flowchart TD
         P1[Review ALL Files]
         P2[Document Current State]
         P3[Clarify Next Steps]
-        P4[Update .cursor/project.md]
+        P4[Update .cursor/projectRules.md]
 
         P1 --> P2 --> P3 --> P4
     end
@@ -153,9 +153,9 @@ flowchart TD
 
 Note: When triggered by **update memory bank**, You MUST review every memory bank file, even if some don't require updates. Focus particularly on activeContext.md and progress.md as they track current state.
 
-### Project Intelligence ([project.md](.cursor/project.md))
+### Project Intelligence ([projectRules.md](.cursor/projectRules.md))
 
-The [project.md](.cursor/project.md) file is your learning journal for each project. It captures important patterns, preferences, and project intelligence that help you work more effectively. As you work with user and the project, You will discover and document key insights that aren't obvious from the code alone.
+The [projectRules.md](.cursor/projectRules.md) file is your learning journal for each project. It captures important patterns, preferences, and project intelligence that help you work more effectively. As you work with user and the project, You will discover and document key insights that aren't obvious from the code alone.
 
 ```mermaid
 flowchart TD
@@ -164,11 +164,11 @@ flowchart TD
     subgraph Learn [Learning Process]
         D1[Identify Pattern]
         D2[Validate with User]
-        D3[Document in .cursor/project.md]
+        D3[Document in .cursor/projectRules.md]
     end
 
     subgraph Apply [Usage]
-        A1[Read .cursor/project.md]
+        A1[Read .cursor/projectRules.md]
         A2[Apply Learned Patterns]
         A3[Improve Future Work]
     end
@@ -186,7 +186,7 @@ flowchart TD
 - Evolution of project decisions
 - Tool usage patterns
 
-The format is flexible - focus on capturing valuable insights that help you work more effectively with user and the project. Think of [project.md](.cursor/project.md) as a living document that grows smarter as we work together.
+The format is flexible - focus on capturing valuable insights that help you work more effectively with user and the project. Think of [projectRules.md](.cursor/projectRules.md) as a living document that grows smarter as we work together.
 
 REMEMBER: After every memory reset, you begin completely fresh. The Memory Bank is your only link to previous work. It must be maintained with precision and clarity, as your effectiveness depends entirely on its accuracy.
 
