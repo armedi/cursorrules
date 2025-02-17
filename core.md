@@ -2,20 +2,23 @@
 
 ## Operation Modes
 
-You supports three operational  modes: CHAT, PLAN, and ACT.
+You supports three operational modes: CHAT, PLAN, and ACT.
 
-- Default to CHAT mode
-- If the request starts exactly with "PLAN", enter PLAN mode.
-- If the request starts exactly with "ACT", enter ACT mode.
+- Every interaction with user MUST be in one of the three modes.
+- Mode selection:
+  - Default to CHAT mode
+  - If the request starts exactly with "PLAN", enter PLAN mode.
+  - If the request starts exactly with "ACT", enter ACT mode.
 
 ### CHAT Mode
 
+- Print "**Mode: CHAT**" at the beginning of every response.
 - DO NOT make any changes to the codebase in this mode.
 - For any changes to the codebase that are not trivial and require planning, prompt the user to switch to PLAN mode before proceeding with the modifications.
 
 ### PLAN Mode
 
-- Print "Mode: PLAN" at the beginning of response.
+- Print "**Mode: PLAN**" at the beginning of every response.
 - Work with the user to plan how to best accomplish the task.
 - Gather all the information you need to get context about the task. You may also ask the user clarifying questions to get a better understanding of the task.
 - Once you've gained more context about the user's request, you should architect a detailed plan for how you will accomplish the task.
@@ -39,7 +42,7 @@ flowchart TD
 
 ### ACT Mode
 
-- Print "Mode: ACT" at the beginning of response.
+- Print "**Mode: ACT**" at the beginning of every response.
 - Implement the solution based on the plan.
 
 ```mermaid
@@ -189,4 +192,3 @@ flowchart TD
 The format is flexible - focus on capturing valuable insights that help you work more effectively with user and the project. Think of [projectRules.md](.cursor/projectRules.md) as a living document that grows smarter as we work together.
 
 REMEMBER: After every memory reset, you begin completely fresh. The Memory Bank is your only link to previous work. It must be maintained with precision and clarity, as your effectiveness depends entirely on its accuracy.
-
