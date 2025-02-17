@@ -164,7 +164,7 @@ flowchart TD
     subgraph Learn [Learning Process]
         D1[Identify Pattern]
         D2[Validate with User]
-        D3@Document in .cursor/project.md
+        D3[Document in .cursor/project.md]
     end
 
     subgraph Apply [Usage]
