@@ -29,29 +29,7 @@ create_file() {
 # Create core memory bank files with initial templates
 
 # 1. Project Brief
-create_file "$CURSOR_TASK_DIR/plan.md" "# Task Plan
-
-## Task Overview
-
-
-## Requirements
-- 
-
-## Detailed Plan
-"
+create_file "$CURSOR_TASK_DIR/plan.md" ""
 
 # 6. Progress Tracking
-create_file "$CURSOR_DIR/progress.md" "# Task Progress
-
-## Completed
-- 
-
-## In Progress
-- 
-
-## Pending
-- 
-
-## Known Issues
-- 
-"
+create_file "$CURSOR_TASK_DIR/progress.md" ""
