@@ -37,6 +37,7 @@ cleanup() {
 trap cleanup EXIT
 
 # Create target directories if they don't exist
+echo ""
 echo "Checking and creating directories if needed..."
 echo ""
 if [ ! -d ".cursor" ]; then
