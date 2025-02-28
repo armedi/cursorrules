@@ -38,6 +38,7 @@ trap cleanup EXIT
 
 # Create target directories if they don't exist
 echo "Checking and creating directories if needed..."
+echo ""
 if [ ! -d ".cursor" ]; then
   mkdir -p ".cursor" || error_message "Failed to create .cursor directory"
 fi
@@ -54,11 +55,11 @@ fi
 echo "Downloading files from ${REPO_URL}..."
 ZIP_FILE="${TEMP_DIR}/repo.zip"
 
-if command -v curl &> /dev/null; then
+if command -v curl &>/dev/null; then
   if ! curl -L -s --fail "${ZIP_URL}" -o "${ZIP_FILE}"; then
     error_message "Failed to download repository. Please check your internet connection and try again."
   fi
-elif command -v wget &> /dev/null; then
+elif command -v wget &>/dev/null; then
   if ! wget -q "${ZIP_URL}" -O "${ZIP_FILE}"; then
     error_message "Failed to download repository. Please check your internet connection and try again."
   fi
@@ -76,7 +77,7 @@ echo "Extracting files..."
 EXTRACT_DIR="${TEMP_DIR}/extract"
 mkdir -p "${EXTRACT_DIR}"
 
-if command -v unzip &> /dev/null; then
+if command -v unzip &>/dev/null; then
   if ! unzip -q "${ZIP_FILE}" -d "${EXTRACT_DIR}"; then
     error_message "Failed to extract zip file. The file may be corrupted."
   fi
@@ -90,11 +91,9 @@ EXTRACTED_RULES_DIR=$(find "${EXTRACT_DIR}" -type d -name "rules" -path "*/.curs
 if [ -z "${EXTRACTED_RULES_DIR}" ]; then
   echo "No rules directory found in the repository."
 else
-  # Copy all files from the extracted rules directory to the target directory
-  echo "Copying rules files to ${RULES_DIR}..."
   # First try with specific files
   cp -Rf "${EXTRACTED_RULES_DIR}/"* "${RULES_DIR}/" 2>/dev/null || true
-  
+
   # Check if any files were copied
   if [ "$(ls -A "${EXTRACTED_RULES_DIR}")" ] && [ ! "$(ls -A "${RULES_DIR}" 2>/dev/null)" ]; then
     echo "Warning: Standard file copy for rules directory might have failed, trying direct directory copy..."
@@ -108,24 +107,13 @@ EXTRACTED_TASK_DIR=$(find "${EXTRACT_DIR}" -type d -name "task" -path "*/.cursor
 if [ -z "${EXTRACTED_TASK_DIR}" ]; then
   echo "No task directory found in the repository."
 else
-  # Display directory contents for debugging
-  echo "Found task directory with the following files:"
-  ls -la "${EXTRACTED_TASK_DIR}" || true
-  
-  # Copy all files from the extracted task directory to the target directory
-  echo "Copying task files to ${TASK_DIR}..."
-  
   # Ensure target directory is clean and writable
   rm -rf "${TASK_DIR}/*" 2>/dev/null || true
-  
+
   # Try direct directory copy instead of wildcard pattern
   if ! cp -Rf "${EXTRACTED_TASK_DIR}/." "${TASK_DIR}/"; then
     error_message "Failed to copy task files. Check permissions and try again."
   fi
-  
-  # Verify the copy was successful
-  echo "Verifying task files were copied successfully..."
-  ls -la "${TASK_DIR}" || true
 fi
 
 # Success confirmation
