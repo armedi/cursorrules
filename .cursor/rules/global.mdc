@@ -52,7 +52,7 @@ Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
   1. Validate the implementation against requirements
   2. Update Kanban status in progress.md
   3. Seek confirmation before proceeding to next step
-- When the task is complete, end with: "Is there anything specific you'd like me to explain or any adjustments you'd like to make?".
+- When the task is complete, end with: "Implementation is complete. Is there anything specific you'd like me to explain or any adjustments you'd like to make?".
 
 ## File Storage Conventions
 

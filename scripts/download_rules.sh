@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# download_rules.sh - Downloads .cursor/rules directory from github.com/armedi/cursorrules
+# download_rules.sh - Downloads .cursor/rules and .cursor/task directories from github.com/armedi/cursorrules
 #
 # Usage: curl https://raw.githubusercontent.com/armedi/cursorrules/refs/heads/main/scripts/download_rules.sh | bash
 #
@@ -21,8 +21,9 @@ BRANCH="main"
 REPO_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}"
 ZIP_URL="${REPO_URL}/archive/refs/heads/${BRANCH}.zip"
 
-# Target directory
-TARGET_DIR=".cursor/rules"
+# Target directories
+RULES_DIR=".cursor/rules"
+TASK_DIR=".cursor/task"
 
 # Temporary directory for download
 TEMP_DIR=$(mktemp -d)
@@ -41,12 +42,16 @@ if [ ! -d ".cursor" ]; then
   mkdir -p ".cursor" || error_message "Failed to create .cursor directory"
 fi
 
-if [ ! -d "$TARGET_DIR" ]; then
-  mkdir -p "$TARGET_DIR" || error_message "Failed to create $TARGET_DIR directory"
+if [ ! -d "$RULES_DIR" ]; then
+  mkdir -p "$RULES_DIR" || error_message "Failed to create $RULES_DIR directory"
+fi
+
+if [ ! -d "$TASK_DIR" ]; then
+  mkdir -p "$TASK_DIR" || error_message "Failed to create $TASK_DIR directory"
 fi
 
 # Download the repository as a zip file
-echo "Downloading rules from ${REPO_URL}..."
+echo "Downloading files from ${REPO_URL}..."
 ZIP_FILE="${TEMP_DIR}/repo.zip"
 
 if command -v curl &> /dev/null; then
@@ -67,7 +72,7 @@ if [ ! -s "${ZIP_FILE}" ]; then
 fi
 
 # Extract the zip file
-echo "Extracting rules files..."
+echo "Extracting files..."
 EXTRACT_DIR="${TEMP_DIR}/extract"
 mkdir -p "${EXTRACT_DIR}"
 
@@ -79,27 +84,55 @@ else
   error_message "unzip is not installed. Please install it and try again."
 fi
 
-# Find the .cursor/rules directory in the extracted files
-RULES_DIR=$(find "${EXTRACT_DIR}" -type d -name "rules" -path "*/.cursor/*" | head -n 1)
+# Process the .cursor/rules directory
+EXTRACTED_RULES_DIR=$(find "${EXTRACT_DIR}" -type d -name "rules" -path "*/.cursor/*" | head -n 1)
 
-if [ -z "${RULES_DIR}" ]; then
-  # If the rules directory doesn't exist in the repo, create an empty one
-  echo "No rules directory found in the repository. Creating an empty one."
+if [ -z "${EXTRACTED_RULES_DIR}" ]; then
+  echo "No rules directory found in the repository."
 else
   # Copy all files from the extracted rules directory to the target directory
-  echo "Copying rules files to ${TARGET_DIR}..."
-  if ! cp -R "${RULES_DIR}"/* "${TARGET_DIR}/" 2>/dev/null; then
-    # The directory might be empty, which is fine
-    if [ "$(ls -A "${RULES_DIR}")" ]; then
-      error_message "Failed to copy rules files. Check permissions and try again."
-    fi
+  echo "Copying rules files to ${RULES_DIR}..."
+  # First try with specific files
+  cp -Rf "${EXTRACTED_RULES_DIR}/"* "${RULES_DIR}/" 2>/dev/null || true
+  
+  # Check if any files were copied
+  if [ "$(ls -A "${EXTRACTED_RULES_DIR}")" ] && [ ! "$(ls -A "${RULES_DIR}" 2>/dev/null)" ]; then
+    echo "Warning: Standard file copy for rules directory might have failed, trying direct directory copy..."
+    cp -Rf "${EXTRACTED_RULES_DIR}/." "${RULES_DIR}/" || error_message "Failed to copy rules files. Check permissions and try again."
   fi
+fi
+
+# Process the .cursor/task directory
+EXTRACTED_TASK_DIR=$(find "${EXTRACT_DIR}" -type d -name "task" -path "*/.cursor/*" | head -n 1)
+
+if [ -z "${EXTRACTED_TASK_DIR}" ]; then
+  echo "No task directory found in the repository."
+else
+  # Display directory contents for debugging
+  echo "Found task directory with the following files:"
+  ls -la "${EXTRACTED_TASK_DIR}" || true
+  
+  # Copy all files from the extracted task directory to the target directory
+  echo "Copying task files to ${TASK_DIR}..."
+  
+  # Ensure target directory is clean and writable
+  rm -rf "${TASK_DIR}/*" 2>/dev/null || true
+  
+  # Try direct directory copy instead of wildcard pattern
+  if ! cp -Rf "${EXTRACTED_TASK_DIR}/." "${TASK_DIR}/"; then
+    error_message "Failed to copy task files. Check permissions and try again."
+  fi
+  
+  # Verify the copy was successful
+  echo "Verifying task files were copied successfully..."
+  ls -la "${TASK_DIR}" || true
 fi
 
 # Success confirmation
 echo ""
-echo "✓ Successfully downloaded rules from ${REPO_URL}"
-echo "✓ Files are located in: $(pwd)/${TARGET_DIR}"
+echo "✓ Successfully downloaded files from ${REPO_URL}"
+echo "✓ Rules files are located in: $(pwd)/${RULES_DIR}"
+echo "✓ Task files are located in: $(pwd)/${TASK_DIR}"
 echo ""
 
 exit 0
