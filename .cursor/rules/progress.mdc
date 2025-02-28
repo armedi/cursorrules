@@ -1,0 +1,52 @@
+---
+description: Cursor Task Progress File
+globs: .cursor/task/progress.md
+alwaysApply: false
+---
+## Format
+
+```md
+# Task Progress: [Name of the task]
+
+## Current Kanban Status
+
+### To Do
+
+- [ ] [Remaining steps from the plan]
+
+### In Progress
+
+- [ ] [Current step being implemented]
+
+### Done
+
+- [x] [Completed steps with brief results]
+
+## Steps Implementation Details
+
+### [Previous completed step]
+
+- Implementation approach used:
+  [Details of implementation]
+- Validation results:
+  [Results of testing/validation]
+- Issues encountered:
+  [Any problems and their solutions]
+- Deviations from plan:
+  [Any changes made with justification]
+
+### [Step being implemented or just completed]
+
+- Implementation approach used:
+  [Details of implementation]
+- Validation results:
+  [Results of testing/validation]
+- Issues encountered:
+  [Any problems and their solutions]
+- Deviations from plan:
+  [Any changes made with justification]
+
+## Next Steps
+
+- [Identify the next step to be implemented]
+```

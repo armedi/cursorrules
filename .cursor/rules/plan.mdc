@@ -1,0 +1,24 @@
+---
+description: Cursor Task Plan File
+globs: .cursor/task/plan.md
+alwaysApply: false
+---
+## Format:
+
+```md
+# Plan: [Name of the task]
+
+## Task Overview
+
+[Description of the task]
+
+## Implementation Steps
+
+1. [First step with details]
+2. [Second step with details]
+   ...
+
+## Success Criteria
+
+- [Measurable outcomes]
+```

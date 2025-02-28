@@ -1,3 +1,8 @@
+---
+description: Global Rules
+globs: 
+alwaysApply: true
+---
 ## Special Modes
 
 Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
@@ -55,67 +60,12 @@ Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
 ### plan.md (.cursor/task/plan.md)
 - Created during PLAN mode
 - Contains the complete task breakdown
-- Format:
-  ```
-  # Plan: [Name of the task]
-  
-  ## Task Overview
-  [Description of the task]
-  
-  ## Implementation Steps
-  1. [First step with details]
-  2. [Second step with details]
-  ...
-  
-  ## Success Criteria
-  - [Measurable outcomes]
-  ```
 - Must be referenced in ACT mode for implementation
 - Cannot be modified in ACT mode without explicit permission
 
 ### progress.md (.cursor/task/progress.md)
 - Created and maintained during ACT mode
 - Follows Kanban structure for tracking progress
-- Format:
-  ```
-  # Task Progress: [Name of the task]
-  
-  ## Current Kanban Status
-  
-  ### To Do
-  - [ ] [Remaining steps from the plan]
-  
-  ### In Progress
-  - [ ] [Current step being implemented]
-  
-  ### Done
-  - [x] [Completed steps with brief results]
-  
-  ## Steps Implementation Details
-
-  ### [Previous completed step]
-  - Implementation approach used:
-    [Details of implementation]
-  - Validation results:
-    [Results of testing/validation]
-  - Issues encountered:
-    [Any problems and their solutions]
-  - Deviations from plan:
-    [Any changes made with justification]
-  
-  ### [Step being implemented or just completed]
-  - Implementation approach used:
-    [Details of implementation]
-  - Validation results:
-    [Results of testing/validation]
-  - Issues encountered:
-    [Any problems and their solutions]
-  - Deviations from plan:
-    [Any changes made with justification]
-  
-  ## Next Steps
-  - [Identify the next step to be implemented]
-  ```
 - Updated after each implementation step
 - Serves as the implementation history and status tracker
 
