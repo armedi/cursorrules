@@ -1,0 +1,4 @@
+# Ignore all files in the .cursor/task directory
+*
+# Allow tracking of the .gitignore file itself
+!.gitignore

@@ -36,8 +36,7 @@ Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
 - When plan is finalized, write it to the `.cursor/task/plan.md` file.
 - **MANDATORY CONFIRMATION**: Ask the user to explicitly confirm the plan before suggesting mode change.
 - **STRICT PROHIBITION**: Under NO circumstances implement any part of the solution while in PLAN mode.
-- End with: "Plan is complete. To implement this solution, please type 'ACT' to switch to ACT mode."
-
+- End with: "Plan is complete. To implement this solution, please type 'ACT' to switch to ACT mode.".
 
 ### ACT Mode
 
@@ -53,17 +52,19 @@ Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
   1. Validate the implementation against requirements
   2. Update Kanban status in progress.md
   3. Seek confirmation before proceeding to next step
-- When the task is complete, summarize what was accomplished with reference to the original plan.
+- When the task is complete, end with: "Is there anything specific you'd like me to explain or any adjustments you'd like to make?".
 
 ## File Storage Conventions
 
 ### plan.md (.cursor/task/plan.md)
+
 - Created during PLAN mode
 - Contains the complete task breakdown
 - Must be referenced in ACT mode for implementation
 - Cannot be modified in ACT mode without explicit permission
 
 ### progress.md (.cursor/task/progress.md)
+
 - Created and maintained during ACT mode
 - Follows Kanban structure for tracking progress
 - Updated after each implementation step
