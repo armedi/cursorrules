@@ -3,6 +3,13 @@ description: Global Rules
 globs: 
 alwaysApply: true
 ---
+## File Understanding
+
+- Each file should begin with a comment clearly describing its purpose, contents, and context within the project.
+- Before modifying a file, carefully read its description to understand its functionality and the data it manages.
+- Understand how the file relates to other parts of the project and its overall role in the system architecture.
+- Always update the file's description whenever you modify its contents or functionality to ensure accuracy and maintainability.
+
 ## Special Modes
 
 Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
