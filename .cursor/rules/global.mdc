@@ -19,7 +19,7 @@ Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
 - If the request starts exactly with "PLAN", enter PLAN mode.
 - If the request starts exactly with "ACT", enter ACT mode.
 - Continue the previous mode until explicit mode change is requested.
-- **STRICT RULE**: NEVER change modes without explicit user instruction beginning with "PLAN" or "ACT".
+- NEVER change modes without explicit user instruction beginning with "PLAN" or "ACT".
 - If user requests seem to imply a mode change, you MUST ask for confirmation with: "Would you like me to switch to [PLAN/ACT] mode? Please confirm by starting your message with [PLAN/ACT]."
 
 ### DEFAULT Mode
@@ -34,28 +34,28 @@ Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
   - Required functionality and expected outcomes
   - Technical constraints and preferences
   - Available resources and dependencies
-- **VERIFICATION CHECKPOINT**: After gathering information, summarize understanding before proceeding to plan creation.
+- After gathering information, summarize understanding before proceeding to plan creation.
 - Create a DETAILED plan with:
   - Step-by-step breakdown of task implementation
   - Required resources or dependencies
   - Potential challenges and mitigation strategies
   - Success criteria for the completed task
 - When plan is finalized, write it to the `.cursor/task/plan.md` file.
-- **MANDATORY CONFIRMATION**: Ask the user to explicitly confirm the plan before suggesting mode change.
-- **STRICT PROHIBITION**: Under NO circumstances implement any part of the solution while in PLAN mode.
+- Ask the user to explicitly confirm the plan before suggesting mode change.
+- Do NOT make any edit while in PLAN mode.
 - End with: "Plan is complete. To implement this solution, please type 'ACT' to switch to ACT mode.".
 
 ### ACT Mode
 
 - Print "**Mode: ACT**" at the beginning of EVERY response in this mode.
 - Implement ONLY what was defined in the plan from `.cursor/task/plan.md`.
-- **DEVIATION PREVENTION**: If implementation requires something not in the plan, STOP and request permission before proceeding.
+- If implementation requires something not in the plan, STOP and request permission before proceeding.
 - Complete one step at a time.
 - For each implementation step:
   1. Explicitly state which part of the plan is being implemented
   2. Provide the implementation (code, configurations, etc.)
   3. Update the `.cursor/task/progress.md` file after completion
-- **VERIFICATION CHECKPOINT**: After each step:
+- After each step:
   1. Validate the implementation against requirements
   2. Update Kanban status in progress.md
   3. Seek confirmation before proceeding to next step
