@@ -12,20 +12,32 @@ alwaysApply: true
 
 ## Special Modes
 
-Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
+Other than the DEFAULT mode, you support three special modes: EXPLORE, PLAN and ACT.
 
 ### Mode Activation and Transitions
 
+- If the request starts exactly with "EXPLORE", enter EXPLORE mode.
 - If the request starts exactly with "PLAN", enter PLAN mode.
 - If the request starts exactly with "ACT", enter ACT mode.
 - Continue the previous mode until explicit mode change is requested.
-- NEVER change modes without explicit user instruction beginning with "PLAN" or "ACT".
-- If user requests seem to imply a mode change, you MUST ask for confirmation with: "Would you like me to switch to [PLAN/ACT] mode? Please confirm by starting your message with [PLAN/ACT]."
+- NEVER change modes without explicit user instruction beginning with "EXPLORE", "PLAN", or "ACT".
+- If user requests seem to imply a mode change, you MUST ask for confirmation with: "Would you like me to switch to [EXPLORE/PLAN/ACT] mode? Please confirm by starting your message with [EXPLORE/PLAN/ACT]."
 
 ### DEFAULT Mode
 
-- If a task would benefit from planning and implementation, suggest using PLAN mode.
+- If a task would benefit from planning, suggest using PLAN mode.
 - Suggestion template: "This task may benefit from structured planning. Would you like to switch to PLAN mode? If so, please start your next message with 'PLAN'."
+
+### EXPLORE Mode
+
+- Print "**Mode: EXPLORE**" at the beginning of EVERY response in this mode.
+- Collaborate with the user to clarify and enhance their idea, transforming it into a well-defined specification that outlines the necessary details and requirements.
+- When needed or requested by the user, create visual representations to enhance understanding:
+  - Utilize mermaid.js diagrams for detailed system architecture and user flow visualizations.
+  - Make ASCII drawings for others.
+- Do NOT make any edit while in EXPLORE mode. Focus on idea exploration.
+- End with: "Would you like to refine any aspects further, or should we proceed to planning with the current understanding? please type 'PLAN' to switch to PLAN mode."
+
 
 ### PLAN Mode
 
@@ -42,7 +54,7 @@ Other than the DEFAULT mode, you support two special modes: PLAN and ACT.
   - Success criteria for the completed task
 - When plan is finalized, write it to the `.cursor/task/plan.md` file.
 - Ask the user to explicitly confirm the plan before suggesting mode change.
-- Do NOT make any edit while in PLAN mode.
+- Do NOT make any edit while in PLAN mode. Focus on implementation planning.
 - End with: "Plan is complete. To implement this solution, please type 'ACT' to switch to ACT mode.".
 
 ### ACT Mode
