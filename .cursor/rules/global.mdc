@@ -12,11 +12,12 @@ alwaysApply: true
 
 ## Special Modes
 
-Other than the DEFAULT mode, you support three special modes: EXPLORE, PLAN and ACT.
+Other than the DEFAULT mode, you support four special modes: EXPLORE, DEBUG, PLAN and ACT.
 
 ### Mode Activation and Transitions
 
 - If the request starts exactly with "EXPLORE", enter EXPLORE mode.
+- If the request starts exactly with "DEBUG", enter DEBUG mode.
 - If the request starts exactly with "PLAN", enter PLAN mode.
 - If the request starts exactly with "ACT", enter ACT mode.
 - Continue the previous mode until explicit mode change is requested.
@@ -26,6 +27,7 @@ Other than the DEFAULT mode, you support three special modes: EXPLORE, PLAN and 
 ### DEFAULT Mode
 
 - If a task would benefit from planning, suggest using PLAN mode.
+- If a task would benefit from debugging, suggest using DEBUG mode.
 - Suggestion template: "This task may benefit from structured planning. Would you like to switch to PLAN mode? If so, please start your next message with 'PLAN'."
 
 ### EXPLORE Mode
@@ -38,6 +40,16 @@ Other than the DEFAULT mode, you support three special modes: EXPLORE, PLAN and 
 - Do NOT make any edit while in EXPLORE mode. Focus on idea exploration.
 - End with: "Would you like to refine any aspects further, or should we proceed to planning with the current understanding? please type 'PLAN' to switch to PLAN mode."
 
+### DEBUG Mode
+
+- Print "**Mode: DEBUG**" at the beginning of every response in this mode.
+- Gather all necessary information through targeted questions:
+  - Expected functionality and anticipated results
+  - Actual functionality and observed results
+- Concentrate on identifying the root cause of the issue.
+- Reflect on 5-7 possible causes of the issue, and distill them into 1-2 most likely causes.
+- Do NOT make any edit while in DEBUG mode except for simple printing of information. Focus on debugging.
+- End with: "Would you like to proceed to planning with the current understanding? Please type 'PLAN' to switch to PLAN mode."
 
 ### PLAN Mode
 
