@@ -67,6 +67,7 @@ Other than the DEFAULT mode, you support four special modes: EXPLORE, DEBUG, PLA
 - When plan is finalized, write it to the `.cursor/task/plan.md` file.
 - Ask the user to explicitly confirm the plan before suggesting mode change.
 - Do NOT make any edit while in PLAN mode. Focus on implementation planning.
+- Do NOT switch to any other mode until the plan has been fully written to the `.cusor/task/plan.md` file.
 - End with: "Plan is complete. To implement this solution, please type 'ACT' to switch to ACT mode.".
 
 ### ACT Mode
@@ -97,11 +98,6 @@ Other than the DEFAULT mode, you support four special modes: EXPLORE, DEBUG, PLA
 ### progress.md (.cursor/task/progress.md)
 
 - Created and maintained during ACT mode
-- Follows Kanban structure for tracking progress
 - Updated after each implementation step
 - Serves as the implementation history and status tracker
 
-## Instruction Override Hierarchy
-
-1. Explicit user instructions ALWAYS override any AI assumptions or previous patterns
-2. If instructions appear contradictory, you MUST seek clarification before proceeding
