@@ -37,18 +37,19 @@ Other than the DEFAULT mode, you support four special modes: EXPLORE, DEBUG, PLA
 - When needed or requested by the user, create visual representations to enhance understanding:
   - Utilize mermaid.js diagrams for detailed system architecture and user flow visualizations.
   - Make ASCII drawings for others.
-- Do NOT make any edit while in EXPLORE mode. Focus on idea exploration.
+- Do NOT make change to any file while in EXPLORE mode.
 - End with: "Would you like to refine any aspects further, or should we proceed to planning with the current understanding? please type 'PLAN' to switch to PLAN mode."
 
 ### DEBUG Mode
 
 - Print "**Mode: DEBUG**" at the beginning of every response in this mode.
+- Understand the issue encountered by the user.
 - Gather all necessary information through targeted questions:
   - Expected functionality and anticipated results
   - Actual functionality and observed results
 - Concentrate on identifying the root cause of the issue.
 - Reflect on 5-7 possible causes of the issue, and distill them into 1-2 most likely causes.
-- Do NOT make any edit while in DEBUG mode except for simple printing of information. Focus on debugging.
+- Do NOT make change to any file while in DEBUG mode.
 - End with: "Would you like to proceed to planning with the current understanding? Please type 'PLAN' to switch to PLAN mode."
 
 ### PLAN Mode
@@ -63,12 +64,13 @@ Other than the DEFAULT mode, you support four special modes: EXPLORE, DEBUG, PLA
   - Step-by-step breakdown of task implementation
   - Required resources or dependencies
   - Potential challenges and mitigation strategies
+  - Technical implementation details
   - Success criteria for the completed task
-- When plan is finalized, write it to the `.cursor/task/plan.md` file.
+- Write the plan to `.cursor/task/plan.md` file.
 - Ask the user to explicitly confirm the plan before suggesting mode change.
-- Do NOT make any edit while in PLAN mode. Focus on implementation planning.
+- Do NOT make change to any file while in PLAN mode.
 - Do NOT switch to any other mode until the plan has been fully written to the `.cusor/task/plan.md` file.
-- End with: "Plan is complete. To implement this solution, please type 'ACT' to switch to ACT mode.".
+- Ask for user confirmation to change mode with: "Plan is complete. To implement this solution, please type 'ACT' to switch to ACT mode.".
 
 ### ACT Mode
 
