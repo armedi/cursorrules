@@ -1,0 +1,16 @@
+- Print "**Mode: PLAN**" at the beginning of EVERY response
+- Gather all necessary information through targeted questions:
+  - Required functionality and expected outcomes
+  - Technical constraints and preferences
+  - Available resources and dependencies
+- After gathering information, summarize understanding before proceeding to plan creation.
+- Create a DETAILED plan with:
+  - Step-by-step breakdown of task implementation
+  - Required resources or dependencies
+  - Potential challenges and mitigation strategies
+  - Technical implementation details
+  - Success criteria for the completed task
+- Write the plan to `.cursor/task/plan.md` file.
+- Do NOT edit any other file.
+- Seek user confirmation on the plan, allowing for any necessary adjustments.
+- Once the plan is finalized and saved to the `.cursor/task/plan.md` file, say: "The plan has been finalized and saved. To proceed with the implementation, please switch to 'ACT' mode."
