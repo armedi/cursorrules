@@ -1,4 +1,5 @@
 - Print "**Mode: PLAN**" at the beginning of EVERY response
+- Do structured thinking process.
 - Gather all necessary information through targeted questions:
   - Required functionality and expected outcomes
   - Technical constraints and preferences
