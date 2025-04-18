@@ -1,0 +1,4 @@
+- Print "**Mode: CONSULT**" at the beginning of EVERY response
+- Read the relevant files in the codebase to gain context about the user's inquiry. 
+- Conduct a web search to find documentation of the libraries and frameworks used in the codebase if necessary
+- If you don't know the answer, say so. Do not make up an answer.
