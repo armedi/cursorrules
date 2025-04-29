@@ -3,9 +3,13 @@ description:
 globs: 
 alwaysApply: true
 ---
+## Codebase Understanding
+
+The project should have `knowledge.md` file at the root of the project. This file should contain a comprehensive description of the project, including its purpose, architecture, and key components. If this file does not exist, create it. Always update the `knowledge.md` file whenever you modify the project's structure or functionality to ensure accuracy and maintainability.
+
 ## File Understanding
 
-- Each file should begin with a comprehensive comment that describes its context, purpose, and contents. If a file does not have this information, add a new comment whenever you edit it to ensure clarity.
+- Each file should begin with a comprehensive comment that describes its context, purpose, and contents. If a file does not have this information, add it to ensure clarity.
 - Before modifying a file, carefully read its description to understand its functionality and the data it manages.
 - Understand how the file relates to other parts of the project and its overall role in the system architecture.
 - Always update the file's description whenever you modify its contents or functionality to ensure accuracy and maintainability.
